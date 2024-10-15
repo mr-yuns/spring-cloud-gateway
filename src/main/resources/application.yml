@@ -1,0 +1,32 @@
+project:
+  nickname: Spring Cloud Gateway
+  environment: main
+
+server:
+  port: 8080
+
+spring:
+  main:
+    web-application-type: reactive
+
+  application:
+    name: spring-cloud-gateway
+
+  cloud:
+    gateway:
+      routes:
+        - id: customer
+          uri: https://www.facebook.com
+          predicates:
+            - Path=/customer/**
+          filters:
+            - StripPrefix=1
+            - RequestResponseFilter
+
+        - id: api
+          uri: http://localhost:8081
+          predicates:
+            - Path=/api/**
+          filters:
+            - StripPrefix=1
+            - RequestResponseFilter

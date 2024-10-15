@@ -1,0 +1,12 @@
+version: "3"
+services:
+  app-gateway:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: app-gateway
+    restart: always
+    volumes:
+      - "./:/app"
+    ports:
+      - 8080:8080
